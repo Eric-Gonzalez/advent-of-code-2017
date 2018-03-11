@@ -1,4 +1,4 @@
-from utils import mapt
+from advent.utils import mapt
 
 
 class InverseCaptcha(object):
@@ -45,7 +45,8 @@ class InverseCaptcha(object):
 
         digits = mapt(int, captcha_input)
         captcha_sum = 0
-        for i in range(len(digits)):
-            if digits[i] == digits[i - len(digits) / 2]:
+        length = len(digits)
+        for i in range(length):
+            if digits[i] == digits[i - length // 2]:
                 captcha_sum += digits[i]
         return captcha_sum

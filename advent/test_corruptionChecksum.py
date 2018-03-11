@@ -1,5 +1,5 @@
 from unittest import TestCase
-from advent.CorruptionChecksum import CorruptionChecksum
+from advent.corruption_checksum import CorruptionChecksum
 
 
 class TestCorruptionChecksum(TestCase):
