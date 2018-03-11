@@ -18,11 +18,7 @@ class InverseCaptcha(object):
 
         digits = mapt(int, captcha_input)
         length = len(digits)
-        captcha_sum = 0
-        for i in range(length):
-            if digits[i] == digits[i - 1]:
-                captcha_sum += digits[i]
-        return captcha_sum
+        return sum(digits[i] for i in range(length) if digits[i] == digits[i - 1])
 
     @staticmethod
     def sum_of_half(captcha_input):
@@ -44,9 +40,6 @@ class InverseCaptcha(object):
         """
 
         digits = mapt(int, captcha_input)
-        captcha_sum = 0
+        # captcha_sum = 0
         length = len(digits)
-        for i in range(length):
-            if digits[i] == digits[i - length // 2]:
-                captcha_sum += digits[i]
-        return captcha_sum
+        return sum(digits[i] for i in range(length) if digits[i] == digits[i - length // 2])
