@@ -1,16 +1,10 @@
 from unittest import TestCase
+
 from advent.corruption_checksum import CorruptionChecksum
 
 
 class TestCorruptionChecksum(TestCase):
-    def test_calc_checksum_1(self):
-        sheet = '''5 1 9 5
-                   7 5 3
-                   2 4 6 8'''
-        self.assertEqual(CorruptionChecksum.calc_checksum(sheet), 18)
-
-    def test_calc_checksum_2(self):
-        sheet = '''121 59 141 21 120 67 58 49 22 46 56 112 53 111 104 130
+    official_input = '''121 59 141 21 120 67 58 49 22 46 56 112 53 111 104 130
         1926 1910 760 2055 28 2242 146 1485 163 976 1842 1982 137 1387 162 789
         4088 258 2060 1014 4420 177 4159 194 2794 4673 4092 681 174 2924 170 3548
         191 407 253 192 207 425 580 231 197 382 404 472 164 571 500 216
@@ -26,4 +20,21 @@ class TestCorruptionChecksum(TestCase):
         112 2429 1987 2129 2557 1827 477 100 78 634 352 1637 588 77 1624 2500
         514 218 209 185 197 137 393 555 588 569 710 537 48 309 519 138
         1567 3246 4194 151 3112 903 1575 134 150 4184 3718 4077 180 4307 4097 1705'''
-        self.assertEqual(CorruptionChecksum.calc_checksum(sheet), 32121)
+
+    def test_calc_checksum_1(self):
+        sheet = '''5 1 9 5
+                   7 5 3
+                   2 4 6 8'''
+        self.assertEqual(CorruptionChecksum.calc_checksum(sheet), 18)
+
+    def test_calc_checksum_2(self):
+        self.assertEqual(CorruptionChecksum.calc_checksum(self.official_input), 32121)
+
+    def test_calc_even_divisible_checksum_1(self):
+        sheet = '''5 9 2 8
+                   9 4 7 3
+                   3 8 6 5'''
+        self.assertEqual(CorruptionChecksum.calc_even_divisible_checksum(sheet), 9)
+
+    def test_calc_even_divisible_checksum_2(self):
+        self.assertEqual(CorruptionChecksum.calc_even_divisible_checksum(self.official_input), 197)
