@@ -1,3 +1,6 @@
+from itertools import islice
+
+
 def atom(token):
     "Parse a str token into a number, or leave it as a str."
     try:
@@ -28,3 +31,7 @@ def mapt(fn, *args):
 def first(iterable, default=None):
     "The first item in an iterable, or default if it is empty."
     return next(iter(iterable), default)
+
+
+def nth(iterable, position):
+    return next(islice(iterable, position, None), None)
