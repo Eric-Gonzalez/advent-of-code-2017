@@ -20,7 +20,5 @@ class HighEntropyPassphrases(object):
 
     @staticmethod
     def is_valid_without_permutations(phrase):
-        sorted_tokens = []
-        for token in array(phrase)[0]:
-            sorted_tokens.append(''.join(sorted(token)))
+        sorted_tokens = list(''.join(sorted(token)) for token in array(phrase)[0])
         return is_unique(sorted_tokens)
