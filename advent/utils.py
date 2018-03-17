@@ -1,3 +1,4 @@
+import math
 from itertools import islice
 
 
@@ -7,7 +8,7 @@ def atom(token):
         return int(token)
     except ValueError:
         try:
-            return float(token)
+            return token if math.isnan(float(token)) else float(token)
         except ValueError:
             return token
 

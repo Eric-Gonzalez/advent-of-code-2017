@@ -13,3 +13,10 @@ class HighEntropyPassphrases(object):
         """
         tokens = array(phrase)[0]
         return len(tokens) == len(set(tokens))
+
+    @staticmethod
+    def is_valid_without_permutations(phrase):
+        sorted_tokens = []
+        for token in array(phrase)[0]:
+            sorted_tokens.append(''.join(sorted(token)))
+        return len(sorted_tokens) == len(set(sorted_tokens))

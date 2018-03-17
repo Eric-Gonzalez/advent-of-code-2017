@@ -529,3 +529,23 @@ class TestHighEntropyPassphrases(TestCase):
     def test_number_of_valid(self):
         valid_count = sum(1 for phrase in self.official_input.splitlines() if HighEntropyPassphrases.is_valid(phrase))
         self.assertEqual(valid_count, 451)
+
+    def test_is_valid_without_permutations_1(self):
+        self.assertFalse(HighEntropyPassphrases.is_valid_without_permutations('abcde xyz ecdab'))
+
+    def test_is_valid_without_permutations_2(self):
+        self.assertTrue(HighEntropyPassphrases.is_valid_without_permutations('abcde fghij'))
+
+    def test_is_valid_without_permutations_3(self):
+        self.assertTrue(HighEntropyPassphrases.is_valid_without_permutations('a ab abc abd abf abj'))
+
+    def test_is_valid_without_permutations_4(self):
+        self.assertTrue(HighEntropyPassphrases.is_valid_without_permutations('iiii oiii ooii oooi oooo'))
+
+    def test_is_valid_without_permutations_4(self):
+        self.assertFalse(HighEntropyPassphrases.is_valid_without_permutations('oiii ioii iioi iiio'))
+
+    def test_number_of_valid_without_permutations(self):
+        valid_count = sum(1 for phrase in self.official_input.splitlines() if
+                          HighEntropyPassphrases.is_valid_without_permutations(phrase))
+        self.assertEqual(valid_count, 223)
