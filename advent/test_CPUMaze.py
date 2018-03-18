@@ -1103,3 +1103,10 @@ class TestCPUMaze(TestCase):
     def test_run_1(self):
         instructions = list(int(item) for item in self.official_input.splitlines())
         self.assertEqual(CPUMaze.run(instructions), 394829)
+
+    def test_run_part_two(self):
+        self.assertEqual(CPUMaze.run_part_two([0, 3, 0, 1, -3]), 10)
+
+    def test_run_2(self):
+        instructions = list(int(item) for item in self.official_input.splitlines())
+        self.assertEqual(CPUMaze.run_part_two(instructions), 31150702)
