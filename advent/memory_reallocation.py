@@ -7,13 +7,15 @@ class MemoryReallocation(object):
 
         # Save the initial state of the world
         seen_banks = {current_banks}
+        seen_banks_at_cycle = {}
         count = 1
         while True:
             current_banks = self.spread(current_banks)
             if current_banks in seen_banks:
-                return count
+                return count, count - seen_banks_at_cycle[current_banks] + 1
             count += 1
             seen_banks.add(current_banks)
+            seen_banks_at_cycle[current_banks] = count
 
     def spread(self, banks):
         """
@@ -31,3 +33,13 @@ class MemoryReallocation(object):
         for i in range(max_bank_index + 1, max_bank_index + 1 + max_bank_value):
             banks_list[i % len(banks_list)] += 1
         return tuple(banks_list)
+
+
+"""
+
+Out of curiosity, the debugger would also like to know the size of the loop: starting from a state that has already been seen, how many block redistribution cycles must be performed before that same state is seen again?
+
+In the example above, 2 4 1 2 is seen again after four cycles, and so the answer in that example would be 4.
+
+How many cycles are in the infinite loop that arises from the configuration in your puzzle input?
+"""
